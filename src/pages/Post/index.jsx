@@ -16,9 +16,12 @@ import { useState } from 'react';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import { setHours, setMinutes } from 'date-fns';
-
+import { addPostAPI } from '@apis/post';
+import { useNavigate } from 'react-router-dom';
+import Swal from 'sweetalert2';
 const Post = () => {
     const [name, setName] = useState('');
+    const navigate = useNavigate();
     const [location, setLocation] = useState('');
     const [introduce, setIntroduce] = useState('');
     const [startDate, setStartDate] = useState(
@@ -28,7 +31,14 @@ const Post = () => {
         setHours(setMinutes(new Date(), 30), 16),
     );
     const [selectedFile, setSelectedFile] = useState(null); // 추가: 파일 상태 추가
-
+    const addPost = async () => {
+        try {
+            await addPostAPI(name, location, startDate, endDate, introduce);
+            navigate('/main');
+        } catch (error) {
+            console.error('Add Post failed:', error);
+        }
+    };
     // 추가: 파일 선택 시 실행되는 핸들러 함수
     const handleFileChange = e => {
         const file = e.target.files[0];
@@ -139,7 +149,9 @@ const Post = () => {
                                 style={{ width: '100%', marginTop: '10px' }}
                             />
                         )}
-                        <Button type='submit'>제출</Button>
+                        <Button type='submit' onClick={addPost}>
+                            제출
+                        </Button>
                     </Box>
                 </Container>
             </Background>

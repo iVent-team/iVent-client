@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 import CryptoJS from 'crypto-js';
-
+import { useNavigate } from 'react-router-dom';
 import {
     GlobalStyle,
     Background,
@@ -16,6 +16,7 @@ import {
 } from './style';
 
 const RegisterIndividual = () => {
+    const navigate = useNavigate();
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [checkPw, setCheckPw] = useState('');
@@ -54,7 +55,7 @@ const RegisterIndividual = () => {
             return alert('학번을 입력해주세요.');
         }
         try {
-            const hashedPassword = hashPassword(password);
+            const hashedPassword = hashPassword(password).toUpperCase();
 
             const data = {
                 username: username,
@@ -73,7 +74,7 @@ const RegisterIndividual = () => {
 
             console.log(response.data);
 
-            history.push('/registeraccepted');
+            navigate('/registeraccepted');
         } catch (error) {
             console.error('Registration error:', error);
             console.log(error.response);
