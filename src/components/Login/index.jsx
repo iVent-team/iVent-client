@@ -1,8 +1,7 @@
 import { useState } from 'react';
-import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 import CryptoJS from 'crypto-js';
-
+import { useNavigate } from 'react-router-dom';
 import {
     Background,
     Container,
@@ -18,7 +17,7 @@ import {
 export const LogIn = () => {
     const [id, setId] = useState('');
     const [password, setPassword] = useState('');
-
+    const navigate = useNavigate();
     const LoginFunc = async e => {
         e.preventDefault();
         if (!id) {
@@ -27,27 +26,27 @@ export const LogIn = () => {
             return alert('비밀번호를 입력해주세요.');
         }
         try {
-            const hashedPassword = CryptoJS.SHA512(password).toString(
-                CryptoJS.enc.Hex,
-            );
-
+            const hashedPassword = CryptoJS.SHA512(password)
+                .toString(CryptoJS.enc.Hex)
+                .toUpperCase();
+            console.log(hashedPassword);
             const data = {
                 username: id,
                 password: hashedPassword,
             };
 
-            const response = await axios.post(
+            const response = await axios.put(
                 'https://api.i-vent.net/api/v0/user/sign',
                 data,
             );
 
             const token = response.data.token;
 
-            localStorage.setItem('token', token);
+            localStorage.setItem('access', token.access);
+            localStorage.setItem('refresh', token.refresh);
 
             console.log(response.data);
-
-            history.push();
+            navigate('/main');
         } catch (error) {
             console.error('Login error:', error);
 

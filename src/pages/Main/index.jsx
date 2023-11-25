@@ -8,8 +8,21 @@ import {
     GlobalStyle,
     Button,
 } from './style';
-
+import { logoutAPI } from '@apis';
+import { useNavigate } from 'react-router-dom';
 const Main = () => {
+    const navigate = useNavigate();
+    const logout = async () => {
+        try {
+            await logoutAPI();
+            navigate('/');
+            localStorage.removeItem('access');
+            localStorage.removeItem('refresh');
+        } catch (error) {
+            console.error('Logout failed:', error);
+        }
+    };
+
     return (
         <>
             <GlobalStyle />
@@ -22,7 +35,7 @@ const Main = () => {
                     <Options>
                         <Button>MY PAGE</Button>
                         <Button>iVent 만들기</Button>
-                        <Button>로그아웃</Button>
+                        <Button onClick={logout}>로그아웃</Button>
                     </Options>
                 </Container>
             </Background2>
