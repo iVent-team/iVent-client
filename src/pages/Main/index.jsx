@@ -16,8 +16,6 @@ const Main = () => {
         try {
             await logoutAPI();
             navigate('/');
-            localStorage.removeItem('access');
-            localStorage.removeItem('refresh');
         } catch (error) {
             console.error('Logout failed:', error);
         }
@@ -35,7 +33,7 @@ const Main = () => {
                     <Options>
                         <Button to={'/mypage'}>MY PAGE</Button>
                         <Button to={'/post'}>iVent 만들기</Button>
-                        <Button>로그아웃</Button>
+                        <Button onClick={logout}>로그아웃</Button>
                     </Options>
                 </Container>
             </Background2>

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import axios from 'axios';
 import CryptoJS from 'crypto-js';
 import { useNavigate } from 'react-router-dom';
@@ -58,6 +58,14 @@ export const LogIn = () => {
         }
     };
 
+    useEffect(() => {
+        const token = localStorage.getItem('access');
+        if (token) {
+            navigate('/main');
+        } else {
+            navigate('/');
+        }
+    }, [navigate]);
     return (
         <Background>
             <Container>

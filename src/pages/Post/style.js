@@ -94,6 +94,7 @@ export const Button = styled.button`
     margin: 25px 0;
     font-size: 20px;
     text-align: center;
+    cursor: pointer;
     background-color: rgb(134, 38, 51);
     color: white;
     font-family: 'Pretendard-SemiBold', sans-serif;
