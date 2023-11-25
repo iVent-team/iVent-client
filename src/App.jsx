@@ -8,6 +8,8 @@ import RegisterIndividual from '@pages/Register/RegisterIndividual';
 import RegisterAccepted from '@pages/RegisterAccepted/Index';
 import Post from '@pages/Post';
 import Main from '@pages/Main';
+import { MyPage } from '@pages/MyPage';
+import Review from './pages/Review';
 
 function App() {
     return (
@@ -31,6 +33,9 @@ function App() {
                     />
                     <Route path='post' element={<Post />} />
                     <Route path='main' element={<Main />} />
+
+                    <Route path='mypage' element={<MyPage />} />
+                    <Route path='review' element={<Review />} />
                 </Route>
             </Routes>
         </BrowserRouter>
