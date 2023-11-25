@@ -21,8 +21,8 @@
         "lint-fix": "npx eslint . --fix",
         "prettier-check": "npx prettier --check \"src/**/*.+(js|ts|json)\"",
         "prettier-fix": "npx prettier --write \"src/**/*.+(js|ts|json)\"",
-        "postinstall": "if [ -e .git ]; then npx patch-package && npx husky install; else echo 'postinstall was not executed cause cannot find .git'; fi",
-        "pre-commit": "if [ -e .git ]; then npm run lint-check && npx lint-staged && npm run build; else echo 'pre-commit was not executed cause cannot find .git'; fi"
+        "postinstall": "npx patch-package && npx husky install",
+        "pre-commit": "npm run lint-check && npx lint-staged && npm run build"
     },
     "lint-staged": {
         "**/*.{ts,tsx,js,jsx}": [
