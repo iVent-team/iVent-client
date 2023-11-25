@@ -16,6 +16,11 @@ export const StyledLabel = styled.label`
     display: flex;
     justify-content: center;
     padding: 5px;
+
+    width: 50vw;
+    border: 1px solid black;
+    border-radius: 30px;
+    margin-bottom: 20px;
 `;
 export const FormItem = styled.div`
     display: flex;

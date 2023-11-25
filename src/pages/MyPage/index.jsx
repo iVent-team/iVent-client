@@ -1,11 +1,14 @@
 import { MyPageLayout, Header, Content, IventBox } from './style';
-import { IventItem } from './IventItem';
+
+import { useState } from 'react';
+import { IventCard } from '@components';
 export const MyPage = () => {
+    const [IventList, setIventList] = useState([]);
     return (
         <MyPageLayout>
             <Header>MyPage</Header>
             <Content>
-                <IventItem>FirstItem</IventItem>
+                <IventCard />
             </Content>
         </MyPageLayout>
     );

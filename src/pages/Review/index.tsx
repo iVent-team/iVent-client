@@ -10,6 +10,7 @@ import {
 } from './style';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import Swal from 'sweetalert2';
+import { Rating } from '@mui/material';
 
 interface IFormInput {
     Question1: string;
@@ -18,7 +19,6 @@ interface IFormInput {
 
 interface IQuestion2 {
     name: string;
-    detail: string;
     rate: number;
 }
 
@@ -27,11 +27,12 @@ const Review = () => {
         register,
         handleSubmit,
         setFocus,
+
         formState: { errors },
     } = useForm<IFormInput>();
 
     const [sections, setSections] = useState<IQuestion2[]>([
-        { name: '', detail: '', rate: 1 },
+        { name: '', rate: -1 },
     ]);
     useEffect(() => {
         setFocus('Question1');
@@ -61,39 +62,85 @@ const Review = () => {
     };
 
     const addSection = () => {
-        const newSection: IQuestion2 = { name: '', detail: '', rate: 1 };
+        const newSection: IQuestion2 = { name: '', rate: 1 };
         setSections([...sections, newSection]);
     };
-
+    const names = [
+        'Oliver Hansen',
+        'Van Henry',
+        'April Tucker',
+        'Ralph Hubbard',
+        'Omar Alexander',
+        'Carlos Abbott',
+        'Miriam Wagner',
+        'Bradley Wilkerson',
+        'Virginia Andrews',
+        'Kelly Snyder',
+    ];
+    const [value, setValue] = React.useState<number | null>();
     return (
         <ReviewLayout>
             <StyledForm onSubmit={handleSubmit(onSubmit)}>
                 <FormItem>
                     <StyledLabel>참여하신 Ivent가 어떠셨나요?😊</StyledLabel>
-                    <StyledTextArea {...register('Question1')} />
+                    <div>
+                        <input
+                            type='radio'
+                            id='yes'
+                            value='yes'
+                            {...register('Question1')}
+                        />
+                        <label>다시 참여할래요</label>
+                    </div>
+                    <div>
+                        <input
+                            type='radio'
+                            id='no'
+                            value='no'
+                            {...register('Question1')}
+                        />
+                        <label>다시 참여하고 싶지않아요</label>
+                    </div>
                 </FormItem>
                 {sections.map((section, index) => (
                     <div key={index}>
                         <FormItem>
-                            <StyledLabel>이름</StyledLabel>
+                            <StyledLabel>추천인 이름 {index + 1}</StyledLabel>
                             <input
                                 {...register(
                                     `Question2.${index}.name` as const,
                                 )}
+                                style={{ padding: '5px' }}
                             />
-                        </FormItem>
-                        <FormItem>
-                            <StyledLabel>신고내용</StyledLabel>
-                            <StyledTextArea
-                                {...register(
-                                    `Question2.${index}.detail` as const,
-                                )}
-                            />
-                        </FormItem>
-                        <FormItem>
-                            <StyledLabel>별점평가</StyledLabel>
                             <StyledRadio>
-                                {[1, 2, 3, 4, 5].map(value => (
+                                <Rating
+                                    name={`Question2.${index}.rate`}
+                                    value={section.rate}
+                                    defaultValue={section.rate}
+                                    onChange={(event, newValue) => {
+                                        setSections(prevSections => {
+                                            const newSections = [
+                                                ...prevSections,
+                                            ];
+                                            newSections[index].rate =
+                                                newValue ?? 5;
+                                            return newSections;
+                                        });
+                                        register(
+                                            `Question2.${index}.rate` as const,
+                                            {
+                                                value: newValue ?? 1,
+                                            },
+                                        );
+                                    }}
+                                />
+                            </StyledRadio>
+                        </FormItem>
+
+                        <FormItem>
+                            {/* <StyledLabel>신고 이름</StyledLabel> */}
+
+                            {/* {[1, 2, 3, 4, 5].map(value => (
                                     <input
                                         key={value}
                                         {...register(
@@ -102,8 +149,7 @@ const Review = () => {
                                         type='radio'
                                         value={value.toString()}
                                     />
-                                ))}
-                            </StyledRadio>
+                                ))} */}
                         </FormItem>
                     </div>
                 ))}
