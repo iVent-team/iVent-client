@@ -5,6 +5,8 @@ import FindPw from '@pages/FindPW';
 import RegisterCommon from '@pages/Register/RegisterCommon';
 import RegisterInstitution from '@pages/Register/RegisterInstitution';
 import RegisterIndividual from '@pages/Register/RegisterIndividual';
+import { MyPage } from '@pages/MyPage';
+import Review from './pages/Review';
 
 function App() {
     return (
@@ -22,6 +24,9 @@ function App() {
                         path='registerindividual'
                         element={<RegisterIndividual />}
                     />
+
+                    <Route path='mypage' element={<MyPage />} />
+                    <Route path='review' element={<Review />} />
                 </Route>
             </Routes>
         </BrowserRouter>
