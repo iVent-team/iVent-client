@@ -1,4 +1,16 @@
-import { MyPageLayout, Header, IventBox, IventLayout } from './style';
+import {
+    MyPageLayout,
+    Header,
+    IventBox,
+    IventLayout,
+    Table,
+    TableHeader,
+    TableRow,
+    TableCell,
+    RejectButton,
+    AcceptButton,
+    Friendliness,
+} from './style';
 import { IventContainer, IconBox } from './style';
 import { useState } from 'react';
 import { IventCard } from '@components';
@@ -109,6 +121,37 @@ export const MyPage = () => {
                     </IventContainer>
                 </div>
             </IventLayout>
+            <Table>
+                <thead>
+                    <TableRow>
+                        <TableHeader>Name</TableHeader>
+                        <TableHeader>College, Major</TableHeader>
+                        <TableHeader># of Events Joined</TableHeader>
+                        <TableHeader>Friendliness Level</TableHeader>
+                        <TableHeader>Warning Status</TableHeader>
+                        <TableHeader>Request</TableHeader>
+                    </TableRow>
+                </thead>
+                <tbody>
+                    {/* Example row, replace with your data */}
+                    <TableRow>
+                        <TableCell>John Doe</TableCell>
+                        <TableCell>
+                            University of Example, Computer Science
+                        </TableCell>
+                        <TableCell>10</TableCell>
+                        <TableCell>
+                            <Friendliness friendlinessLevel={5} />
+                        </TableCell>
+                        <TableCell>No Warning</TableCell>
+                        <TableCell>
+                            <AcceptButton>Accept</AcceptButton>
+                            <RejectButton>Reject</RejectButton>
+                        </TableCell>
+                    </TableRow>
+                    {/* Add more rows as needed */}
+                </tbody>
+            </Table>
         </MyPageLayout>
     );
 };

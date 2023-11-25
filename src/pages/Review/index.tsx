@@ -7,6 +7,7 @@ import {
     StyledLabel,
     StyledRadio,
     StyledTextArea,
+    StyledTitle,
 } from './style';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import Swal from 'sweetalert2';
@@ -81,6 +82,9 @@ const Review = () => {
     return (
         <ReviewLayout>
             <StyledForm onSubmit={handleSubmit(onSubmit)}>
+                <StyledTitle>
+                    We're curious about the event you joined last time!
+                </StyledTitle>
                 <FormItem>
                     <StyledLabel>참여하신 Ivent가 어떠셨나요?😊</StyledLabel>
                     <div>

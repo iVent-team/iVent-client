@@ -18,7 +18,7 @@ export const StyledLabel = styled.label`
     padding: 5px;
 
     width: 50vw;
-    border: 1px solid black;
+    // border: 1px solid black;
     border-radius: 30px;
     margin-bottom: 20px;
 `;
@@ -44,4 +44,9 @@ export const StyledTextArea = styled.textarea`
 `;
 export const StyledInput = styled.input`
     width: 30vw;
+`;
+export const StyledTitle = styled.text`
+    font-size: 30px;
+    color: #862733;
+    font-family: 'Pretendard-Bold';
 `;
