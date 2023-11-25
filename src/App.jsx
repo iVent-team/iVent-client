@@ -1,10 +1,13 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import Head from './components/Head';
-import Landing from './pages/Landing';
-import FindPw from './pages/FindPw';
-import RegisterCommon from './pages/RegisterCommon';
-import RegisterInstitution from './pages/RegisterInstitution';
-import RegisterIndividual from './pages/RegisterIndividual';
+import { Head } from '@components';
+import Landing from '@pages/Landing';
+import FindPw from '@pages/FindPW';
+import RegisterCommon from '@pages/Register/RegisterCommon';
+import RegisterInstitution from '@pages/Register/RegisterInstitution';
+import RegisterIndividual from '@pages/Register/RegisterIndividual';
+import RegisterAccepted from '@pages/RegisterAccepted/Index';
+import Post from '@pages/Post';
+import Main from '@pages/Main';
 
 function App() {
     return (
@@ -22,6 +25,12 @@ function App() {
                         path='registerindividual'
                         element={<RegisterIndividual />}
                     />
+                    <Route
+                        path='registeraccepted'
+                        element={<RegisterAccepted />}
+                    />
+                    <Route path='post' element={<Post />} />
+                    <Route path='main' element={<Main />} />
                 </Route>
             </Routes>
         </BrowserRouter>
