@@ -21,17 +21,17 @@ module.exports = {
             2,
             'always',
             [
-                'int',
+                'int', //initialize
                 'add',
                 'rmv',
                 'mod',
-                'doc',
-                'ftr',
+                'doc', //document (README)
+                'ftr', //feature
                 'fix',
-                'rfc',
-                'rvt',
+                'rfc', //refactoring
+                'rvt', //revert
                 'sty',
-                'tst',
+                'tst', //test
             ],
         ],
     },
