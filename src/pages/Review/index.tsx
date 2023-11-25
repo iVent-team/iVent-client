@@ -1,5 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import { FormItem, ReviewLayout, StyledForm, StyledRadio } from './style';
+import {
+    FormItem,
+    ReviewLayout,
+    StyledButton,
+    StyledForm,
+    StyledLabel,
+    StyledRadio,
+    StyledTextArea,
+} from './style';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import Swal from 'sweetalert2';
 
@@ -61,15 +69,13 @@ const Review = () => {
         <ReviewLayout>
             <StyledForm onSubmit={handleSubmit(onSubmit)}>
                 <FormItem>
-                    <label>
-                        How was the recent event that you participated in?
-                    </label>
-                    <textarea {...register('Question1')} />
+                    <StyledLabel>참여하신 Ivent가 어떠셨나요?😊</StyledLabel>
+                    <StyledTextArea {...register('Question1')} />
                 </FormItem>
                 {sections.map((section, index) => (
                     <div key={index}>
                         <FormItem>
-                            <label>Name</label>
+                            <StyledLabel>이름</StyledLabel>
                             <input
                                 {...register(
                                     `Question2.${index}.name` as const,
@@ -77,17 +83,15 @@ const Review = () => {
                             />
                         </FormItem>
                         <FormItem>
-                            <label>
-                                Please write about the incident freely
-                            </label>
-                            <textarea
+                            <StyledLabel>신고내용</StyledLabel>
+                            <StyledTextArea
                                 {...register(
                                     `Question2.${index}.detail` as const,
                                 )}
                             />
                         </FormItem>
                         <FormItem>
-                            <label>Please Rate the person</label>
+                            <StyledLabel>별점평가</StyledLabel>
                             <StyledRadio>
                                 {[1, 2, 3, 4, 5].map(value => (
                                     <input
@@ -103,9 +107,7 @@ const Review = () => {
                         </FormItem>
                     </div>
                 ))}
-                <button type='button' onClick={addSection}>
-                    Add Person
-                </button>
+                <StyledButton onClick={addSection}>추가</StyledButton>
                 <input type='submit' />
             </StyledForm>
         </ReviewLayout>
