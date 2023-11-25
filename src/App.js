@@ -1,24 +1,30 @@
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Head from './components/Head';
+import Landing from './pages/Landing';
+import FindPw from './pages/FindPw';
+import RegisterCommon from './pages/RegisterCommon';
+import RegisterInstitution from './pages/RegisterInstitution';
+import RegisterIndividual from './pages/RegisterIndividual';
 
 function App() {
     return (
-        <div className='App'>
-            <header className='App-header'>
-                <img src={logo} className='App-logo' alt='logo' />
-                <p>
-                    Edit <code>src/App.js</code> and save to reload.
-                </p>
-                <a
-                    className='App-link'
-                    href='https://reactjs.org'
-                    target='_blank'
-                    rel='noopener noreferrer'
-                >
-                    Learn React
-                </a>
-            </header>
-        </div>
+        <BrowserRouter>
+            <Routes>
+                <Route element={<Head />}>
+                    <Route path='/' element={<Landing />} />
+                    <Route path='findpw' element={<FindPw />} />
+                    <Route path='registercommon' element={<RegisterCommon />} />
+                    <Route
+                        path='registerinstitution'
+                        element={<RegisterInstitution />}
+                    />
+                    <Route
+                        path='registerindividual'
+                        element={<RegisterIndividual />}
+                    />
+                </Route>
+            </Routes>
+        </BrowserRouter>
     );
 }
 

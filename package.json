@@ -8,7 +8,9 @@
         "@testing-library/user-event": "^13.5.0",
         "react": "^18.2.0",
         "react-dom": "^18.2.0",
+        "react-router-dom": "^6.20.0",
         "react-scripts": "^5.0.1",
+        "styled-components": "^6.1.1",
         "web-vitals": "^2.1.4"
     },
     "scripts": {
@@ -21,8 +23,8 @@
         "lint-fix": "npx eslint . --fix",
         "prettier-check": "npx prettier --check \"src/**/*.+(js|ts|json)\"",
         "prettier-fix": "npx prettier --write \"src/**/*.+(js|ts|json)\"",
-        "postinstall": "if [ -e .git ]; then npx patch-package && npx husky install; else echo 'postinstall was not executed cause cannot find .git'; fi",
-        "pre-commit": "if [ -e .git ]; then npm run lint-check && npx lint-staged && npm run build; else echo 'pre-commit was not executed cause cannot find .git'; fi"
+        "postinstall": "npx patch-package && npx husky install",
+        "pre-commit": "npm run lint-check && npx lint-staged && npm run build"
     },
     "lint-staged": {
         "**/*.{ts,tsx,js,jsx}": [
