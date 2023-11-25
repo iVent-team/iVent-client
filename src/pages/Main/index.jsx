@@ -33,9 +33,9 @@ const Main = () => {
                         <Title>iVent 스케줄</Title>
                     </Callender>
                     <Options>
-                        <Button>MY PAGE</Button>
-                        <Button>iVent 만들기</Button>
-                        <Button onClick={logout}>로그아웃</Button>
+                        <Button to={'/mypage'}>MY PAGE</Button>
+                        <Button to={'/post'}>iVent 만들기</Button>
+                        <Button>로그아웃</Button>
                     </Options>
                 </Container>
             </Background2>

@@ -84,3 +84,23 @@ export const FileContainer = styled.div`
     display: flex;
     width: 100%;
 `;
+
+export const Button = styled.button`
+    width: 100px;
+    height: 40px;
+    border: none;
+    border-radius: 10px;
+    padding: 5px;
+    margin: 25px 0;
+    font-size: 20px;
+    text-align: center;
+    background-color: rgb(134, 38, 51);
+    color: white;
+    font-family: 'Pretendard-SemiBold', sans-serif;
+
+    &:hover {
+        color: black;
+        background-color: #e2e2e2;
+        border: 1px solid #ccc;
+    }
+`;

@@ -10,6 +10,7 @@ import {
     P,
     TextArea,
     FileContainer,
+    Button,
 } from './style';
 import { useState } from 'react';
 import DatePicker from 'react-datepicker';
@@ -34,13 +35,29 @@ const Post = () => {
         setSelectedFile(file);
     };
 
+    const RegisterFunc = async e => {
+        e.preventDefault();
+        if (!name) {
+            return alert('iVent의 이름을 입력해주세요.');
+        }
+        if (!location) {
+            return alert('장소를 입력해주세요.');
+        }
+        if (!startDate) {
+            return alert('행사 일시를 입력해주세요.');
+        }
+        if (!endDate) {
+            return alert('마감 기한을 입력해주세요.');
+        }
+    };
+
     return (
         <>
             <GlobalStyle />
             <Background>
                 <Container>
                     <Title>새 iVent 만들기</Title>
-                    <Box>
+                    <Box onSubmit={RegisterFunc}>
                         <Text
                             type='text'
                             placeholder='iVent 이름*'
@@ -122,6 +139,7 @@ const Post = () => {
                                 style={{ width: '100%', marginTop: '10px' }}
                             />
                         )}
+                        <Button type='submit'>제출</Button>
                     </Box>
                 </Container>
             </Background>
