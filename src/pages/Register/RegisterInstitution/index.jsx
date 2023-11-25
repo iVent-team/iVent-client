@@ -18,8 +18,9 @@ import {
     Password,
     PasswordNotice,
 } from './style';
-
+import { useNavigate } from 'react-router-dom';
 const RegisterInstitution = () => {
+    const navigate = useNavigate();
     const [name, setName] = useState('');
     const [phone, setPhone] = useState('');
     const [website, setWebsite] = useState('');
@@ -74,7 +75,7 @@ const RegisterInstitution = () => {
             return alert('학교 공식 계정과 외부 계정 중 하나를 선택해주세요.');
         }
         try {
-            const hashedPassword = hashPassword(password);
+            const hashedPassword = hashPassword(password).toUpperCase();
 
             const data = {
                 username: username,
@@ -95,7 +96,7 @@ const RegisterInstitution = () => {
 
             console.log(response.data);
 
-            history.push('/registeraccepted');
+            navigate('/registeraccepted');
         } catch (error) {
             console.error('Registration error:', error);
             console.log(error.response);
