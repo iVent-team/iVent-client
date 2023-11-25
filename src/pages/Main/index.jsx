@@ -8,8 +8,7 @@ import {
     GlobalStyle,
     Button,
 } from './style';
-import { getPostsAPI, logoutAPI } from '@apis';
-import { useEffect } from 'react';
+import { logoutAPI } from '@apis';
 import { useNavigate } from 'react-router-dom';
 const Main = () => {
     const navigate = useNavigate();
@@ -21,17 +20,6 @@ const Main = () => {
             console.error('Logout failed:', error);
         }
     };
-    useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const inventsData = await getPostsAPI();
-            } catch (error) {
-                console.error('Error loading invents:', error);
-            }
-        };
-
-        fetchData();
-    }, []);
 
     return (
         <>

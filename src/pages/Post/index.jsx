@@ -16,20 +16,14 @@ import { useState } from 'react';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import { setHours, setMinutes } from 'date-fns';
-import { addPostAPI } from '@apis/post';
-import { useNavigate } from 'react-router-dom';
-import creatingAnimation from 'src/animations/animation_lmrukuxj.json';
-import loadingAnimation from 'src/animations/animation_lmrwrsbx.json';
-import Swal from 'sweetalert2';
+
 const Post = () => {
-    const navigate = useNavigate();
     const [name, setName] = useState('');
     const [location, setLocation] = useState('');
     const [introduce, setIntroduce] = useState('');
     const [startDate, setStartDate] = useState(
         setHours(setMinutes(new Date(), 30), 16),
     );
-    const [isLoading, setIsLoading] = useState(false);
     const [endDate, setEndDate] = useState(
         setHours(setMinutes(new Date(), 30), 16),
     );
@@ -56,14 +50,7 @@ const Post = () => {
             return alert('마감 기한을 입력해주세요.');
         }
     };
-    const addPost = async () => {
-        try {
-            await addPostAPI(name, location, startDate, endDate, introduce);
-            navigate('/main');
-        } catch (error) {
-            console.error('Add Post failed:', error);
-        }
-    };
+
     return (
         <>
             <GlobalStyle />
@@ -152,9 +139,7 @@ const Post = () => {
                                 style={{ width: '100%', marginTop: '10px' }}
                             />
                         )}
-                        <Button type='submit' onClick={addPost}>
-                            제출
-                        </Button>
+                        <Button type='submit'>제출</Button>
                     </Box>
                 </Container>
             </Background>
