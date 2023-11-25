@@ -24,7 +24,7 @@
         "prettier-check": "npx prettier --check \"src/**/*.+(js|ts|json)\"",
         "prettier-fix": "npx prettier --write \"src/**/*.+(js|ts|json)\"",
         "postinstall": "npx patch-package && npx husky install",
-        "pre-commit": "npm run lint-check && npx lint-staged && rm -rf ./build ./docs && npm run build && mv ./build ./docs && git add ./docs"
+        "pre-commit": "npm run lint-check && npx lint-staged && npm run build"
     },
     "lint-staged": {
         "**/*.{ts,tsx,js,jsx}": [
