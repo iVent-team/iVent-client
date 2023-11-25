@@ -20,7 +20,12 @@
         "ecmaVersion": 12
     },
     "rules": {
-        "prettier/prettier": "error",
+        "prettier/prettier": [
+            "error",
+            {
+                "endOfLine": "auto"
+            }
+        ],
         "@typescript-eslint/no-explicit-any": 0,
         "@typescript-eslint/no-unused-vars": [
             "warn",
