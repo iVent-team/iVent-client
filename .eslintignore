@@ -1,8 +1,0 @@
-*.css
-*.test.js
-.husky
-dist
-build
-logs
-node_modules
-swagger.ts
