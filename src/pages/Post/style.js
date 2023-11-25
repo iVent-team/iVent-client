@@ -1,10 +1,11 @@
 import styled from 'styled-components';
 import { createGlobalStyle } from 'styled-components';
+
 export const GlobalStyle = createGlobalStyle`
   body {
-    overflow: hidden;
     margin: 0; /* Reset default margin */
     padding: 0; /* Reset default padding */
+    overflow: hidden;
   }
 `;
 
@@ -30,43 +31,12 @@ export const Title = styled.h1`
 `;
 
 export const Box = styled.form`
-    width: 300px;
+    width: 600px;
     padding: 20px;
     padding-top: 0;
     display: flex;
     flex-direction: column;
     align-items: center;
-`;
-
-export const Name = styled.input`
-    width: 100%;
-    height: 40px;
-    border: 1px solid #ccc;
-    border-radius: 10px;
-    padding: 10px;
-    margin: 10px 0;
-    font-size: 16px;
-    box-sizing: border-box;
-`;
-
-export const Button = styled.button`
-    width: 300px;
-    height: 40px;
-    border: none;
-    border-radius: 10px;
-    padding: 5px;
-    margin: 10px 0;
-    font-size: 16px;
-    text-align: center;
-    background-color: rgb(134, 38, 51);
-    color: white;
-    font-family: 'Pretendard-SemiBold', sans-serif;
-
-    &:hover {
-        color: black;
-        background-color: #e2e2e2;
-        border: 1px solid #ccc;
-    }
 `;
 
 export const Text = styled.input`
@@ -80,19 +50,37 @@ export const Text = styled.input`
     box-sizing: border-box;
 `;
 
-export const Password = styled.input`
+export const TextArea = styled.input`
     width: 100%;
-    height: 40px;
+    height: 200px;
     border: 1px solid #ccc;
     border-radius: 10px;
     padding: 10px;
     margin: 10px 0;
-    font-size: 16px;
+    font-size: 18px;
     box-sizing: border-box;
+    resize: vertical;
+    font-family: 'Pretendard-Light', sans-serif;
 `;
 
-export const PasswordNotice = styled.div`
-    display: ${props => (props.show ? 'block' : 'none')};
-    color: ${props => (props.ismatched ? 'green' : 'red')};
-    margin-bottom: 5px;
+export const DateTopContainer = styled.div`
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+`;
+
+export const DateContainer = styled.div`
+    display: flex;
+    align-items: center;
+    margin: 0 20px;
+`;
+
+export const P = styled.p`
+    font-size: 18px;
+    margin-right: 15px;
+`;
+
+export const FileContainer = styled.div`
+    display: flex;
+    width: 100%;
 `;

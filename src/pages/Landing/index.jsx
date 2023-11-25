@@ -1,12 +1,11 @@
-import { LogIn, About, SuccessfulIvents, UpcomingIvents } from '@components';
+import { LogIn, About, SuccessfulIvents } from '@components';
 import {
     TopContainer,
     Container1,
     Container2,
     Left1,
-    Left2,
     Right1,
-    Right2,
+    Middle,
 } from './style';
 const Landing = () => {
     return (
@@ -20,12 +19,9 @@ const Landing = () => {
                 </Right1>
             </Container1>
             <Container2>
-                <Left2>
+                <Middle>
                     <SuccessfulIvents />
-                </Left2>
-                <Right2>
-                    <UpcomingIvents />
-                </Right2>
+                </Middle>
             </Container2>
         </TopContainer>
     );

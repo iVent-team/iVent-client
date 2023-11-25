@@ -34,15 +34,7 @@ export const Container2 = styled.div`
     margin: 0 auto;
 `;
 
-export const Left2 = styled.div`
-    flex: 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-`;
-
-export const Right2 = styled.div`
-    flex: 1;
+export const Middle = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;

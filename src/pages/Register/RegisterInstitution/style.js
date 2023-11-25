@@ -3,9 +3,9 @@ import { createGlobalStyle } from 'styled-components';
 
 export const GlobalStyle = createGlobalStyle`
   body {
-    overflow: hidden;
     margin: 0; /* Reset default margin */
     padding: 0; /* Reset default padding */
+    overflow: hidden;
   }
 `;
 
@@ -86,4 +86,32 @@ export const Button = styled.button`
         background-color: #e2e2e2;
         border: 1px solid #ccc;
     }
+`;
+
+export const ID = styled.input`
+    width: 100%;
+    height: 40px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 10px;
+    margin: 10px 0;
+    font-size: 16px;
+    box-sizing: border-box;
+`;
+
+export const Password = styled.input`
+    width: 100%;
+    height: 40px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 10px;
+    margin: 10px 0;
+    font-size: 16px;
+    box-sizing: border-box;
+`;
+
+export const PasswordNotice = styled.div`
+    display: ${props => (props.show ? 'block' : 'none')};
+    color: ${props => (props.ismatched ? 'green' : 'red')};
+    margin-bottom: 5px;
 `;
