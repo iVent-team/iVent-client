@@ -38,35 +38,26 @@ export const Box = styled.form`
     flex-direction: column;
     align-items: center;
 `;
-export const Email = styled.input`
+
+export const CheckboxContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     width: 100%;
-    height: 40px;
-    border: 1px solid #ccc;
-    border-radius: 10px;
-    padding: 10px;
-    margin: 10px 0;
-    font-size: 16px;
-    box-sizing: border-box;
+    margin: 10px;
 `;
 
-export const Password = styled.input`
-    width: 100%;
-    height: 40px;
-    border: 1px solid #ccc;
-    border-radius: 10px;
-    padding: 10px;
-    margin: 10px 0;
-    font-size: 16px;
-    box-sizing: border-box;
+export const CheckboxLabel = styled.label`
+    font-size: 18px;
+    margin: 10px;
+    margin-left: 0;
 `;
 
-export const PasswordNotice = styled.div`
-    display: ${props => (props.show ? 'block' : 'none')};
-    color: ${props => (props.isMatched ? 'green' : 'red')};
-    margin-bottom: 5px;
+export const Checkbox = styled.input`
+    margin-right: 10px;
 `;
 
-export const Name = styled.input`
+export const Text = styled.input`
     width: 100%;
     height: 40px;
     border: 1px solid #ccc;

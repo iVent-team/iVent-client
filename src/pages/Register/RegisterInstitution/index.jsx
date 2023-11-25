@@ -1,49 +1,39 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import {
     GlobalStyle,
     Background,
     Container,
     Title,
     Box,
-    Email,
-    Password,
-    PasswordNotice,
-    Name,
+    CheckboxContainer,
+    CheckboxLabel,
+    Checkbox,
+    Text,
     Button,
 } from './style';
+
 const RegisterInstitution = () => {
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-    const [checkPw, setCheckPw] = useState('');
-    const [name, setName] = useState('');
-    const [matched, setMatched] = useState(false);
-
-    const CheckPw = e => {
-        setCheckPw(e.target.value);
-    };
-
-    useEffect(() => {
-        if (checkPw.length > 0) {
-            if (password !== checkPw) {
-                setMatched(false);
-            } else {
-                setMatched(true);
-            }
-        }
-    }, [password, checkPw, matched]);
+    const [affiliation, setAffiliation] = useState('');
+    const [number, setNumber] = useState('');
+    const [webLink, setWebLink] = useState('');
+    const [isSchool, setIsSchool] = useState(false);
+    const [isThird, setIsThird] = useState(false);
 
     const RegisterFunc = e => {
         e.preventDefault();
-        if (!email) {
-            return alert('이메일을 입력해주세요.');
-        } else if (!password) {
-            return alert('비밀번호를 입력해주세요.');
-        } else if (!checkPw) {
-            return alert('비밀번호를 확인해주세요.');
-        } else if (!name) {
-            return alert('닉네임을 입력해주세요.');
-        } else if (password !== checkPw) {
-            return alert('비밀번호를 다시 확인해주세요.');
+        if (!affiliation) {
+            return alert('소속을 입력해주세요.');
+        }
+        if (!number) {
+            return alert('연락처를 입력하세요.');
+        }
+        if (isSchool && isThird) {
+            return alert(
+                '학교 공식 계정과 외부 계정 중 하나만 선택 가능합니다.',
+            );
+        }
+        if (!isSchool && !isThird) {
+            return alert('학교 공식 계정과 외부 계정 중 하나를 선택해주세요.');
         }
     };
 
@@ -54,37 +44,41 @@ const RegisterInstitution = () => {
                 <Container>
                     <Title>기관/단체 회원가입</Title>
                     <Box onSubmit={RegisterFunc}>
-                        <Email
-                            type='email'
-                            placeholder='(학교) 이메일*'
-                            value={email}
-                            onChange={e => setEmail(e.target.value)}
-                        />
-                        <Password
-                            type='password'
-                            placeholder='비밀번호*'
-                            value={password}
-                            onChange={e => setPassword(e.target.value)}
-                        />
-                        <Password
-                            type='password'
-                            placeholder='비밀번호 확인*'
-                            value={checkPw}
-                            onChange={CheckPw}
-                        />
-                        <PasswordNotice
-                            show={checkPw !== ''}
-                            isMatched={matched}
-                        >
-                            {matched
-                                ? '확인되었습니다!'
-                                : '비밀번호가 틀립니다.'}
-                        </PasswordNotice>
-                        <Name
+                        <CheckboxContainer>
+                            <CheckboxLabel>
+                                <Checkbox
+                                    type='checkbox'
+                                    checked={isSchool}
+                                    onChange={() => setIsSchool(!isSchool)}
+                                />
+                                학교 공식 계정
+                            </CheckboxLabel>
+                            <CheckboxLabel>
+                                <Checkbox
+                                    type='checkbox'
+                                    checked={isThird}
+                                    onChange={() => setIsThird(!isThird)}
+                                />
+                                외부 계정
+                            </CheckboxLabel>
+                        </CheckboxContainer>
+                        <Text
                             type='text'
-                            placeholder='닉네임*'
-                            value={name}
-                            onChange={e => setName(e.target.value)}
+                            placeholder='소속*'
+                            value={affiliation}
+                            onChange={e => setAffiliation(e.target.value)}
+                        />
+                        <Text
+                            type='text'
+                            placeholder='연락처*'
+                            value={number}
+                            onChange={e => setNumber(e.target.value)}
+                        />
+                        <Text
+                            type='text'
+                            placeholder='사이트 링크(옵션)'
+                            value={webLink}
+                            onChange={e => setWebLink(e.target.value)}
                         />
                         <Button type='submit'>회원가입</Button>
                     </Box>
