@@ -1,52 +1,71 @@
 import styled from 'styled-components';
-
-export const ReviewLayout = styled.div`
-    font-family: 'Pretendard';
-    font-size: 20px;
-    height: 100vh;
-    width: 100vw;
+import { NavLink } from 'react-router-dom';
+import { createGlobalStyle } from 'styled-components';
+export const GlobalStyle = createGlobalStyle`
+  body {
+    overflow: hidden;
+    margin: 0; /* Reset default margin */
+    padding: 0; /* Reset default padding */
+  }
 `;
-export const StyledForm = styled.form`
+
+export const Wrap = styled.div`
     display: flex;
-    flex-direction: column;
+    width: 100vw;
+    height: 100vh;
     justify-content: center;
     align-items: center;
-`;
-export const StyledLabel = styled.label`
-    display: flex;
-    justify-content: center;
-    padding: 5px;
-
-    width: 50vw;
-    // border: 1px solid black;
-    border-radius: 30px;
-    margin-bottom: 20px;
-`;
-export const FormItem = styled.div`
-    display: flex;
     flex-direction: column;
-    padding: 10px;
+    margin-top: -100px;
 `;
 
-export const StyledRadio = styled.div`
+export const RatingText = styled.div`
+    color: black;
+    font-size: 40px;
+    margin: 30px;
+`;
+
+export const Stars = styled.div`
     display: flex;
-    justify-content: center;
+    padding-top: 5px;
+
+    & svg {
+        color: gray;
+        cursor: pointer;
+    }
+
+    :hover svg {
+        color: #fcc419;
+    }
+
+    & svg:hover ~ svg {
+        color: gray;
+    }
+
+    .yellowStar {
+        color: #fcc419;
+    }
 `;
-export const StyledButton = styled.div`
-    border: 1px solid black;
-    width: 70px;
-    cursor: pointer;
-    display: flex;
-    justify-content: center;
+
+export const Button = styled.button`
+    margin-top: 40px;
+    font-size: 25px;
+    background-color: transparent;
+    border-radius: 10px;
+    width: 150px;
+    padding: 5px 0;
+    font-family: 'Pretendard-Bold', sans-serif;
+
+    &:hover {
+        background-color: #ffc5c5;
+        border: 1px solid #ccc;
+        color: #868296;
+    }
 `;
-export const StyledTextArea = styled.textarea`
-    width: 50vw;
-`;
-export const StyledInput = styled.input`
-    width: 30vw;
-`;
-export const StyledTitle = styled.text`
-    font-size: 30px;
-    color: #862733;
-    font-family: 'Pretendard-Bold';
+
+export const Skip = styled(NavLink)`
+    font-size: 20px;
+    text-decoration: none;
+    color: #868296;
+    margin-top: 10px;
 `;

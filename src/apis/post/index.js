@@ -33,3 +33,13 @@ export function getPostDetailAPI(id) {
             throw error;
         });
 }
+
+export function RegisterRequestAPI(id) {
+    console.log(id);
+    return api
+        .post(`/ivent/join/${id}`)
+        .then(response => console.log(response))
+        .catch(error => {
+            throw error;
+        });
+}
