@@ -1,13 +1,11 @@
 import axios from 'axios';
+import api from '@apis/api';
 
 export function logoutAPI() {
     const refresh = localStorage.getItem('refresh');
     localStorage.removeItem('access');
     localStorage.removeItem('refresh');
-    return axios
-        .delete(`https://api.i-vent.net/api/v0/user/sign?token=${refresh}`)
-        .then(response => response.data.missionLists)
-        .catch(error => {
-            throw error;
-        });
+    return api.delete(`/user/sign?token=${refresh}`).catch(error => {
+        throw error;
+    });
 }

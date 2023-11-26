@@ -1,14 +1,10 @@
 import axios from 'axios';
-if (localStorage.getItem('access')) {
-    axios.defaults.headers.common['Authorization'] =
-        `Bearer ${localStorage.getItem('access')}`;
-}
+import api from '@apis/api';
 
-axios.defaults.withCredentials = true;
 export function getPostsAPI() {
-    return axios
-        .get('https://api.i-vent.net/api/v0/ivent?limit=6&offset=0')
-        .then(response => console.log(response))
+    return api
+        .get('/ivent?limit=6&offset=0')
+        .then(response => response.data)
         .catch(error => {
             throw error;
         });
@@ -21,9 +17,18 @@ export function addPostAPI(name, location, startDate, endDate, introduce) {
         recruitmentTill: new Date(endDate).getTime(),
         startAt: new Date(startDate).getTime(),
     };
-    return axios
-        .post('https://api.i-vent.net/api/v0/ivent', data)
+    return api
+        .post('/ivent', data)
         .then(response => console.log(response))
+        .catch(error => {
+            throw error;
+        });
+}
+
+export function getPostDetailAPI(id) {
+    return api
+        .get(`/ivent/detail/${id}`)
+        .then(response => response.data)
         .catch(error => {
             throw error;
         });

@@ -10,6 +10,7 @@ import Post from '@pages/Post';
 import Main from '@pages/Main';
 import { MyPage } from '@pages/MyPage';
 import Review from './pages/Review';
+import PostDetail from '@pages/Post/PostDetail';
 
 function App() {
     return (
@@ -32,6 +33,7 @@ function App() {
                         element={<RegisterAccepted />}
                     />
                     <Route path='post' element={<Post />} />
+                    <Route path='post/:id' element={<PostDetail />} />
                     <Route path='main' element={<Main />} />
 
                     <Route path='mypage' element={<MyPage />} />

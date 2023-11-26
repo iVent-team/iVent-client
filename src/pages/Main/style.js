@@ -1,3 +1,4 @@
+import { PRIMARY } from '@utility/COLORS';
 import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 import { createGlobalStyle } from 'styled-components';
@@ -13,9 +14,10 @@ export const GlobalStyle = createGlobalStyle`
 export const Background1 = styled.div`
     height: 40vh;
     width: 100vw;
-    display: block;
-    display-items: center;
-    background-color: #ffc5c5;
+    display: flex;
+    justify-content: space-around;
+
+    // background-color: #ffc5c5;
 `;
 
 export const Background2 = styled.div`

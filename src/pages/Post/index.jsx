@@ -31,6 +31,7 @@ const Post = () => {
         setHours(setMinutes(new Date(), 30), 16),
     );
     const [selectedFile, setSelectedFile] = useState(null); // 추가: 파일 상태 추가
+
     const addPost = async () => {
         try {
             await addPostAPI(name, location, startDate, endDate, introduce);

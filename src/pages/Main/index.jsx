@@ -8,12 +8,15 @@ import {
     GlobalStyle,
     Button,
 } from './style';
-
+import Calendar from 'react-calendar';
+import 'react-calendar/dist/Calendar.css';
 import { useNavigate } from 'react-router-dom';
 import { getPostsAPI, logoutAPI } from '@apis';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
+import { PostCard } from '@components/PostCard';
 const Main = () => {
     const navigate = useNavigate();
+    const [data, setData] = useState([]);
     const logout = async () => {
         try {
             await logoutAPI();
@@ -22,10 +25,14 @@ const Main = () => {
             console.error('Logout failed:', error);
         }
     };
+
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const inventsData = await getPostsAPI();
+                const response = await getPostsAPI();
+                if (response) {
+                    setData(response.ivent);
+                }
             } catch (error) {
                 console.error('Error loading invents:', error);
             }
@@ -35,12 +42,25 @@ const Main = () => {
     return (
         <>
             <GlobalStyle />
-            <Background1></Background1>
+            <Background1>
+                {data.map((item, index) => (
+                    <PostCard
+                        key={index}
+                        id={item.id}
+                        title={item.title}
+                        description={item.description}
+                        hostId={item.hostId}
+                        startAt={item.startAt}
+                        recruitmentTill={item.recruitmentTill}
+                    />
+                ))}
+            </Background1>
             <Background2>
                 <Container>
                     <Callender>
                         <Title>iVent 스케줄</Title>
                     </Callender>
+
                     <Options>
                         <Button to={'/mypage'}>MY PAGE</Button>
                         <Button to={'/post'}>iVent 만들기</Button>
