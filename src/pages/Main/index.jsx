@@ -14,7 +14,9 @@ import { useNavigate } from 'react-router-dom';
 import { getPostsAPI, logoutAPI } from '@apis';
 import { useEffect, useState } from 'react';
 import { PostCard } from '@components/PostCard';
+
 const Main = () => {
+    const [value, onChange] = useState(new Date());
     const navigate = useNavigate();
     const [data, setData] = useState([]);
     const logout = async () => {
@@ -42,6 +44,21 @@ const Main = () => {
     return (
         <>
             <GlobalStyle />
+            <Background2>
+                <Container>
+                    {/* <Callender> */}
+                    <div>
+                        <Calendar onChange={onChange} value={value} />
+                    </div>
+                    {/* </Callender> */}
+
+                    <Options>
+                        <Button to={'/mypage'}>MY PAGE</Button>
+                        <Button to={'/post'}>iVent 만들기</Button>
+                        <Button onClick={logout}>로그아웃</Button>
+                    </Options>
+                </Container>
+            </Background2>
             <Background1>
                 {data.map((item, index) => (
                     <PostCard
@@ -55,19 +72,6 @@ const Main = () => {
                     />
                 ))}
             </Background1>
-            <Background2>
-                <Container>
-                    <Callender>
-                        <Title>iVent 스케줄</Title>
-                    </Callender>
-
-                    <Options>
-                        <Button to={'/mypage'}>MY PAGE</Button>
-                        <Button to={'/post'}>iVent 만들기</Button>
-                        <Button onClick={logout}>로그아웃</Button>
-                    </Options>
-                </Container>
-            </Background2>
         </>
     );
 };

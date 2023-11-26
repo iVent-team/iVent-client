@@ -21,11 +21,13 @@ export const Background1 = styled.div`
 `;
 
 export const Background2 = styled.div`
-    height: 50vh;
+    height: 40vh;
     width: 100vw;
     display: block;
     display-items: center;
     background-color: #eee;
+    padding-top: 50px;
+    margin-bottom: 15px;
 `;
 
 export const Container = styled.div`
