@@ -9,6 +9,13 @@ const images = [
     'images/iVent-scuba.png',
     'images/iVent-scuba.png',
     'images/iVent-scuba.png',
+    'images/iVent-scuba.png',
+    'images/iVent-scuba.png',
+    'images/iVent-scuba.png',
+    'images/iVent-scuba.png',
+    'images/iVent-scuba.png',
+    'images/iVent-scuba.png',
+    'images/iVent-scuba.png',
 ];
 
 export const SuccessfulIvents = () => {

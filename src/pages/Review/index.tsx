@@ -1,167 +1,104 @@
-import React, { useEffect, useState } from 'react';
-import {
-    FormItem,
-    ReviewLayout,
-    StyledButton,
-    StyledForm,
-    StyledLabel,
-    StyledRadio,
-    StyledTextArea,
-    StyledTitle,
-} from './style';
-import { useForm, SubmitHandler } from 'react-hook-form';
-import Swal from 'sweetalert2';
-import { Rating } from '@mui/material';
+import React, { useState, useEffect } from 'react';
+import { FaStar } from 'react-icons/fa';
+import { GlobalStyle, Wrap, RatingText, Stars, Button, Skip } from './style';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+const ARRAY = [0, 1, 2, 3, 4];
 
-interface IFormInput {
-    Question1: string;
-    Question2: IQuestion2[];
-}
+function Rating() {
+    const navigate = useNavigate();
+    const [clicked, setClicked] = useState([false, false, false, false, false]);
+    const [submitted, setSubmitted] = useState(false);
+    const [result, setResult] = useState(0);
 
-interface IQuestion2 {
-    name: string;
-    rate: number;
-}
+    const handleStarClick = (index: number) => {
+        const clickStates = [...clicked];
+        for (let i = 0; i < 5; i++) {
+            clickStates[i] = i <= index ? true : false;
+        }
+        setClicked(clickStates);
+    };
 
-const Review = () => {
-    const {
-        register,
-        handleSubmit,
-        setFocus,
-
-        formState: { errors },
-    } = useForm<IFormInput>();
-
-    const [sections, setSections] = useState<IQuestion2[]>([
-        { name: '', rate: -1 },
-    ]);
     useEffect(() => {
-        setFocus('Question1');
-    }, [setFocus]);
-    const onSubmit: SubmitHandler<IFormInput> = async data => {
-        Swal.fire({
-            title: '제출하시겠습니까?',
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: '승인',
-            cancelButtonText: '취소',
-            customClass: {
-                container: 'custom-swal-container',
-            },
-        }).then(async result => {
-            if (result.isConfirmed) {
-                console.log(data);
-                Swal.fire(
-                    '제출이 완료되었습니다.',
-                    '수고많으셨습니다',
-                    'success',
-                );
+        if (submitted) {
+            sendReview();
+        }
+    }, [submitted, clicked]);
+
+    const sendReview = async () => {
+        const score = clicked.filter(Boolean).length;
+        if (score > 2) {
+            setResult(score - 2);
+        } else {
+            setResult(score - 3);
+        }
+        try {
+            const data = {
+                score: result,
+            };
+            const response = await axios.post(
+                'https://api.i-vent.net/api/v0/ivent/rate/1',
+                data,
+            );
+        } catch (error: any) {
+            console.error('Registration error:', error);
+            console.log(error.response);
+            if (error.response) {
+                alert(`Registration failed: ${error.response.data.message}`);
+            } else {
+                alert('Registration failed. Please try again later.');
             }
-        });
+        }
     };
 
-    const addSection = () => {
-        const newSection: IQuestion2 = { name: '', rate: 1 };
-        setSections([...sections, newSection]);
+    const handleSubmit = () => {
+        setSubmitted(true);
     };
-    const names = [
-        'Oliver Hansen',
-        'Van Henry',
-        'April Tucker',
-        'Ralph Hubbard',
-        'Omar Alexander',
-        'Carlos Abbott',
-        'Miriam Wagner',
-        'Bradley Wilkerson',
-        'Virginia Andrews',
-        'Kelly Snyder',
-    ];
-    const [value, setValue] = React.useState<number | null>();
+
+    const handleSkip = async () => {
+        try {
+            const data = {
+                score: 0,
+            };
+            const response = await axios.post(
+                'https://api.i-vent.net/api/v0/ivent/rate/1',
+                data,
+            );
+        } catch (error: any) {
+            console.error('Registration error:', error);
+            console.log(error.response);
+            if (error.response) {
+                alert(`Registration failed: ${error.response.data.message}`);
+            } else {
+                alert('Registration failed. Please try again later.');
+            }
+        }
+    };
+
     return (
-        <ReviewLayout>
-            <StyledForm onSubmit={handleSubmit(onSubmit)}>
-                <StyledTitle>
-                    We're curious about the event you joined last time!
-                </StyledTitle>
-                <FormItem>
-                    <StyledLabel>참여하신 Ivent가 어떠셨나요?😊</StyledLabel>
-                    <div>
-                        <input
-                            type='radio'
-                            id='yes'
-                            value='yes'
-                            {...register('Question1')}
-                        />
-                        <label>다시 참여할래요</label>
-                    </div>
-                    <div>
-                        <input
-                            type='radio'
-                            id='no'
-                            value='no'
-                            {...register('Question1')}
-                        />
-                        <label>다시 참여하고 싶지않아요</label>
-                    </div>
-                </FormItem>
-                {sections.map((section, index) => (
-                    <div key={index}>
-                        <FormItem>
-                            <StyledLabel>추천인 이름 {index + 1}</StyledLabel>
-                            <input
-                                {...register(
-                                    `Question2.${index}.name` as const,
-                                )}
-                                style={{ padding: '5px' }}
+        <>
+            <GlobalStyle />
+            <Wrap>
+                <RatingText>참여했던 iVent를 평가해주세요!</RatingText>
+                <Stars>
+                    {ARRAY.map((el, idx) => {
+                        return (
+                            <FaStar
+                                key={idx}
+                                size='50'
+                                onClick={() => handleStarClick(el)}
+                                className={clicked[el] ? 'yellowStar' : ''}
                             />
-                            <StyledRadio>
-                                <Rating
-                                    name={`Question2.${index}.rate`}
-                                    value={section.rate}
-                                    defaultValue={section.rate}
-                                    onChange={(event, newValue) => {
-                                        setSections(prevSections => {
-                                            const newSections = [
-                                                ...prevSections,
-                                            ];
-                                            newSections[index].rate =
-                                                newValue ?? 5;
-                                            return newSections;
-                                        });
-                                        register(
-                                            `Question2.${index}.rate` as const,
-                                            {
-                                                value: newValue ?? 1,
-                                            },
-                                        );
-                                    }}
-                                />
-                            </StyledRadio>
-                        </FormItem>
-
-                        <FormItem>
-                            {/* <StyledLabel>신고 이름</StyledLabel> */}
-
-                            {/* {[1, 2, 3, 4, 5].map(value => (
-                                    <input
-                                        key={value}
-                                        {...register(
-                                            `Question2.${index}.rate` as const,
-                                        )}
-                                        type='radio'
-                                        value={value.toString()}
-                                    />
-                                ))} */}
-                        </FormItem>
-                    </div>
-                ))}
-                <StyledButton onClick={addSection}>추가</StyledButton>
-                <input type='submit' />
-            </StyledForm>
-        </ReviewLayout>
+                        );
+                    })}
+                </Stars>
+                <Button onClick={handleSubmit}>제출</Button>
+                <Skip to={'/home'} onClick={handleSkip}>
+                    스킵하기
+                </Skip>
+            </Wrap>
+        </>
     );
-};
+}
 
-export default Review;
+export default Rating;

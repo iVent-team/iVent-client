@@ -2,7 +2,7 @@ import {
     MyPageLayout,
     Header,
     IventBox,
-    IventLayout,
+    Background,
     Table,
     TableHeader,
     TableRow,
@@ -10,6 +10,7 @@ import {
     RejectButton,
     AcceptButton,
     Friendliness,
+    GlobalStyle,
 } from './style';
 import { IventContainer, IconBox } from './style';
 import { useState } from 'react';
@@ -35,25 +36,28 @@ export const MyPage = () => {
         status: 'studying',
     };
     return (
-        <MyPageLayout>
-            <MyDetails
-                name={dummy.name}
-                phone={dummy.phone}
-                gender={dummy.gender}
-                college={dummy.college}
-                major={dummy.major}
-                status={dummy.status}
-            />
-            <IventLayout>
-                <div style={{ display: 'flex' }}>
+        <>
+            <GlobalStyle />
+            <MyPageLayout>
+                <MyDetails
+                    name={dummy.name}
+                    phone={dummy.phone}
+                    gender={dummy.gender}
+                    college={dummy.college}
+                    major={dummy.major}
+                    status={dummy.status}
+                />
+                <Background>
                     <IventContainer>
                         <Header>
-                            My Schedule
                             <IconBox>
                                 <SvgIcon
                                     component={ArrowCircleLeftIcon}
                                     inheritViewBox
                                 />
+                            </IconBox>
+                            내 스케줄
+                            <IconBox>
                                 <SvgIcon
                                     component={ArrowCircleRightIcon}
                                     inheritViewBox
@@ -72,12 +76,14 @@ export const MyPage = () => {
                     </IventContainer>
                     <IventContainer>
                         <Header>
-                            히스토리
                             <IconBox>
                                 <SvgIcon
                                     component={ArrowCircleLeftIcon}
                                     inheritViewBox
                                 />
+                            </IconBox>
+                            히스토리
+                            <IconBox>
                                 <SvgIcon
                                     component={ArrowCircleRightIcon}
                                     inheritViewBox
@@ -97,12 +103,14 @@ export const MyPage = () => {
 
                     <IventContainer>
                         <Header>
-                            내가 만든 Ivent
                             <IconBox>
                                 <SvgIcon
                                     component={ArrowCircleLeftIcon}
                                     inheritViewBox
                                 />
+                            </IconBox>
+                            내가 만든 iVent
+                            <IconBox>
                                 <SvgIcon
                                     component={ArrowCircleRightIcon}
                                     inheritViewBox
@@ -119,39 +127,39 @@ export const MyPage = () => {
                             ))}
                         </IventBox>
                     </IventContainer>
-                </div>
-            </IventLayout>
-            <Table>
-                <thead>
-                    <TableRow>
-                        <TableHeader>Name</TableHeader>
-                        <TableHeader>College, Major</TableHeader>
-                        <TableHeader># of Events Joined</TableHeader>
-                        <TableHeader>Friendliness Level</TableHeader>
-                        <TableHeader>Warning Status</TableHeader>
-                        <TableHeader>Request</TableHeader>
-                    </TableRow>
-                </thead>
-                <tbody>
-                    {/* Example row, replace with your data */}
-                    <TableRow>
-                        <TableCell>John Doe</TableCell>
-                        <TableCell>
-                            University of Example, Computer Science
-                        </TableCell>
-                        <TableCell>10</TableCell>
-                        <TableCell>
-                            <Friendliness friendlinessLevel={5} />
-                        </TableCell>
-                        <TableCell>No Warning</TableCell>
-                        <TableCell>
-                            <AcceptButton>Accept</AcceptButton>
-                            <RejectButton>Reject</RejectButton>
-                        </TableCell>
-                    </TableRow>
-                    {/* Add more rows as needed */}
-                </tbody>
-            </Table>
-        </MyPageLayout>
+                </Background>
+                <Table>
+                    <thead>
+                        <TableRow>
+                            <TableHeader>Name</TableHeader>
+                            <TableHeader>College, Major</TableHeader>
+                            <TableHeader># of Events Joined</TableHeader>
+                            <TableHeader>Friendliness Level</TableHeader>
+                            <TableHeader>Warning Status</TableHeader>
+                            <TableHeader>Request</TableHeader>
+                        </TableRow>
+                    </thead>
+                    <tbody>
+                        {/* Example row, replace with your data */}
+                        <TableRow>
+                            <TableCell>John Doe</TableCell>
+                            <TableCell>
+                                University of Example, Computer Science
+                            </TableCell>
+                            <TableCell>10</TableCell>
+                            <TableCell>
+                                <Friendliness friendlinessLevel={5} />
+                            </TableCell>
+                            <TableCell>No Warning</TableCell>
+                            <TableCell>
+                                <AcceptButton>Accept</AcceptButton>
+                                <RejectButton>Reject</RejectButton>
+                            </TableCell>
+                        </TableRow>
+                        {/* Add more rows as needed */}
+                    </tbody>
+                </Table>
+            </MyPageLayout>
+        </>
     );
 };

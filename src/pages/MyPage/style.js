@@ -1,16 +1,22 @@
 import styled from 'styled-components';
 import { PRIMARY } from '@utility';
+import { createGlobalStyle } from 'styled-components';
+export const GlobalStyle = createGlobalStyle`
+  body {
+    overflow-x: hidden;
+    margin: 0; /* Reset default margin */
+    padding: 0; /* Reset default padding */
+  }
+`;
 
 export const MyPageLayout = styled.div``;
-export const IventLayout = styled.div`
-    border: 1px solid black;
-`;
+
 export const Header = styled.div`
     padding: 5px;
     display: flex;
     // justify-content: center;
     align-items: center;
-    font-size: 20px;
+    font-size: 30px;
 `;
 export const Content = styled.div``;
 export const IventBox = styled.div``;
@@ -21,12 +27,13 @@ export const IventContainer = styled.div`
 `;
 export const IconBox = styled.div`
     cursor: pointer;
+    margin: 10px;
 `;
 
 export const Table = styled.table`
-    width: 100%;
+    width: 1180px;
     border-collapse: collapse;
-    margin-top: 20px;
+    margin: 20px auto;
 `;
 
 export const TableHeader = styled.th`
@@ -85,3 +92,15 @@ const calculateBackgroundColor = friendlinessLevel => {
 
     return `rgb(${red}, ${green}, ${blue})`;
 };
+
+export const Background = styled.div`
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    margin: 40px 0;
+`;
+
+export const TopContainer = styled.div`
+    display: flex;
+    justify-content: center;
+`;

@@ -1,9 +1,10 @@
-import { Background, Container, Title } from './style';
+import { Background, Container, Link, StyledIcon } from './style';
 export const About = () => {
     return (
         <Background>
             <Container>
-                <Title></Title>
+                <StyledIcon />
+                <Link>사용자 MANUAL.</Link>
             </Container>
         </Background>
     );
