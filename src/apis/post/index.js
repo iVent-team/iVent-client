@@ -35,7 +35,6 @@ export function getPostDetailAPI(id) {
 }
 
 export function RegisterRequestAPI(id) {
-    console.log(id);
     return api
         .post(`/ivent/join/${id}`)
         .then(response => console.log(response))

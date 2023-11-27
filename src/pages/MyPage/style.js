@@ -53,6 +53,7 @@ export const AcceptButton = styled.div`
     text-align: center;
     font-family: 'Pretendard-Light';
     border-radius: 10px;
+    cursor: pointer;
 `;
 export const RejectButton = styled.div`
     background-color: white;
@@ -61,6 +62,7 @@ export const RejectButton = styled.div`
     text-align: center;
     font-family: 'Pretendard-Light';
     border-radius: 10px;
+    cursor: pointer;
 `;
 
 export const Friendliness = styled.div`
